@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>DAA PathFinder | Dijkstra's Algorithm</title>
+        <link rel="icon" href="cplogo.png" type="image/x-icon">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <!-- ================= NAVBAR ================= -->
+
+        <header class="navbar">
+
+            <div class="logo">
+                <span class="logo-mark">
+                    <img src="ProfilePhoto.png" alt="Profile Photo">
+                </span>
+                <span>DAA</span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#visualizer">Dijkstra's</a>
+                <a href="#algorithm">Algorithm</a>
+                <a href="#about">About</a>
+            </nav>
+
+        </header>
+        <section class="hero" id="home">
+            <div class="welcome-bar">
+    <div class="project-details">
+
+        <div class="detail-item">
+            <span>Name</span>
+            <strong>Ch. Chaithanya Sai</strong>
+        </div>
+
+        <div class="detail-item">
+            <span>Roll Number</span>
+            <strong>B24CS280</strong>
+        </div>
+
+        <div class="detail-item">
+            <span>Branch</span>
+            <strong>CSE</strong>
+        </div>
+
+        <div class="detail-item">
+            <span>Year</span>
+            <strong>3rd Year</strong>
+        </div>
+
+        <div class="detail-item">
+            <span>Section</span>
+            <strong>5CSE5</strong>
+        </div>
+
+        <div class="detail-item">
+            <span>Course Code</span>
+            <strong>U24CS504</strong>
+        </div>
+
+        <div class="detail-item">
+            <span>Course Name</span>
+            <strong>Design & Analysis of Algorithms</strong>
+        </div>
+
+        <div class="detail-item">
+            <span>Course Faculty</span>
+            <strong>P. Divya Teja</strong>
+        </div>
+
+    </div>
+</div>
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    DAA COURSE PROJECT
+                </div>
+
+                <h1>
+                    Dijkstra's Algorithm
+                    <span>Path Finder</span>
+                </h1>
+
+                <p>
+                    Visualize how Dijkstra's shortest path algorithm explores
+                    cities, checks nearby nodes and finally discovers the
+                    shortest route.
+                </p>
+
+                <a href="#visualizer" class="hero-button">
+                    Start Visualizer
+                    <span><b>→</b></span>
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- ================= VISUALIZER ================= -->
+
+        <main class="main-container" id="visualizer">
+
+            <div class="section-heading">
+
+                <span class="section-tag">
+                    INTERACTIVE VISUALIZER
+                </span>
+
+                <h2>
+                    Find the Shortest Path
+                </h2>
+
+                <p>
+                    Select two cities and watch Dijkstra's algorithm work step
+                    by step.
+                </p>
+
+            </div>
+
+            <!-- ================= CONTROL CARD ================= -->
+
+            <section class="control-card">
+
+                <div class="control-title">
+
+                    <div>
+                        <span class="small-label">ROUTE CONFIGURATION</span>
+                        <h3>Select Source & Destination</h3>
+                    </div>
+
+                    <div class="algorithm-badge">
+                        DIJKSTRA
+                    </div>
+
+                </div>
+
+                <div class="route-controls">
+
+                    <!-- FROM -->
+
+                    <div class="control-group">
+
+                        <label for="source">
+                            FROM
+                        </label>
+
+                        <div class="select-wrapper">
+
+                            <span class="select-icon">●</span>
+
+                            <select id="source">
+                                <option value>
+                                    Select Source City
+                                </option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ARROW -->
+
+                    <div class="route-arrow">
+                        ◆
+                    </div>
+
+                    <!-- TO -->
+
+                    <div class="control-group">
+
+                        <label for="destination">
+                            TO
+                        </label>
+
+                        <div class="select-wrapper">
+
+                            <span class="select-icon destination-dot">
+                                ●
+                            </span>
+
+                            <select id="destination">
+                                <option value>
+                                    Select Destination City
+                                </option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="control-buttons">
+
+                    <button
+                        id="findPath"
+                        class="primary-button"
+                        type="button">
+
+                        <span>Find Shortest Path</span>
+                        <span>→</span>
+
+                    </button>
+
+                    <button
+                        id="reset"
+                        class="secondary-button"
+                        type="button">
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- ================= RESULT SUMMARY ================= -->
+
+            <section class="summary-grid">
+
+                <div class="summary-card">
+
+                    <span class="summary-label">
+                        TOTAL DISTANCE
+                    </span>
+
+                    <strong id="distance">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <span class="summary-label">
+                        ALGORITHM STATUS
+                    </span>
+
+                    <strong id="status">
+                        Ready to find shortest path.
+                    </strong>
+
+                </div>
+
+            </section>
+
+            <!-- ================= GRAPH ================= -->
+
+            <section class="graph-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="small-label">
+                            LIVE GRAPH
+                        </span>
+
+                        <h3>
+                            Telangana & Andhra Pradesh
+                        </h3>
+                    </div>
+
+                    <div class="legend">
+
+                        <span>
+                            <i class="legend-dot source-color"></i>
+                            Source
+                        </span>
+
+                        <span>
+                            <i class="legend-dot checking-color"></i>
+                            Checking
+                        </span>
+
+                        <span>
+                            <i class="legend-dot visited-color"></i>
+                            Visited
+                        </span>
+
+                        <span>
+                            <i class="legend-dot path-color"></i>
+                            Shortest Path
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="graph-wrapper">
+
+                    <svg
+                        id="graph"
+                        viewBox="0 0 1200 900"
+                        preserveAspectRatio="xMidYMid meet"
+                        aria-label="City graph">
+
+                        <defs>
+
+                            <pattern
+                                id="gridPattern"
+                                width="40"
+                                height="40"
+                                patternUnits="userSpaceOnUse">
+
+                                <path
+                                    d="M 40 0 L 0 0 0 40"
+                                    fill="none"
+                                    stroke="#e2e8f0"
+                                    stroke-width="1" />
+
+                            </pattern>
+
+                        </defs>
+
+                        <rect
+                            x="0"
+                            y="0"
+                            width="1200"
+                            height="900"
+                            fill="url(#gridPattern)" />
+
+                    </svg>
+
+                </div>
+
+            </section>
+
+            <!-- ================= PATH + LOG ================= -->
+
+            <section class="bottom-grid">
+
+                <!-- SHORTEST PATH -->
+
+                <div class="info-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <span class="small-label">
+                                FINAL RESULT
+                            </span>
+
+                            <h3>
+                                Shortest Route
+                            </h3>
+                        </div>
+
+                    </div>
+
+                    <div id="pathDisplay" class="path-display">
+                        Select source and destination cities.
+                    </div>
+
+                </div>
+
+                <!-- EXECUTION LOG -->
+
+                <div class="info-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <span class="small-label">
+                                ALGORITHM EXECUTION
+                            </span>
+
+                            <h3>
+                                Execution Log
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="executionLog"
+                        class="execution-log">
+
+                        <div class="empty-log">
+                            Algorithm execution will appear here.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ================= ALGORITHM ================= -->
+
+            <section
+                class="algorithm-section"
+                id="algorithm">
+
+                <div class="section-heading">
+
+                    <span class="section-tag">
+                        HOW IT WORKS
+                    </span>
+
+                    <h2>
+                        Dijkstra's Algorithm
+                    </h2>
+
+                    <p>
+                        The visualization shows each major step of the
+                        algorithm.
+                    </p>
+
+                </div>
+
+                <div class="steps-grid">
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Initialize
+                        </h3>
+
+                        <p>
+                            Set the source distance to zero and all other
+                            city distances to infinity.
+                        </p>
+
+                    </div>
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Check Neighbors
+                        </h3>
+
+                        <p>
+                            Examine every unvisited neighboring city and
+                            calculate its possible new distance.
+                        </p>
+
+                    </div>
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Select Minimum
+                        </h3>
+
+                        <p>
+                            Select the unvisited city with the smallest
+                            known distance.
+                        </p>
+
+                    </div>
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Build Path
+                        </h3>
+
+                        <p>
+                            Once the destination is reached, trace backwards
+                            and animate the final shortest route.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ================= ABOUT ================= -->
+
+            <section
+                class="about-section"
+                id="about">
+
+                <div>
+
+                    <span class="section-tag">
+                        ABOUT PROJECT
+                    </span>
+
+                    <h2>
+                        Design & Analysis of Algorithms
+                    </h2>
+
+                    <p>
+                        This project demonstrates Dijkstra's shortest path
+                        algorithm using a weighted graph of cities from
+                        Telangana and Andhra Pradesh.
+                    </p>
+
+                </div>
+
+                <div class="complexity-box">
+
+                    <div>
+                        <span>TIME COMPLEXITY</span>
+                        <strong>O(n²)</strong>
+                    </div>
+
+                    <div>
+                        <span>ALGORITHM TYPE</span>
+                        <strong>Greedy</strong>
+                    </div>
+
+                    <div>
+                        <span>GRAPH TYPE</span>
+                        <strong>Weighted <br>Non-Negative Weights</strong>
+                    </div>
+
+                    <div>
+                        <span>SPACE COMPLEXITY</span>
+                        <strong>O(V + E)</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer>
+
+    <a href="#home">Home</a> <br>
+    <a href="#visualizer">Dijkstra's</a><br>
+    <a href="#algorithm">Algorithm</a><br>
+    <a href="#about">About</a>
+
+    <div class="footer-logo">
+        DAA PathFinder
+    </div>
+
+    <p>
+        Design & Analysis of Algorithms Course Project
+    </p>
+
+    <p>
+        © 2026 DAA Course Project. All rights reserved.
+    </p>
+
+</footer>
+
+        <!-- ================= RESULT MODAL ================= -->
+
+        <div
+            id="resultModal"
+            class="modal-overlay"
+            aria-hidden="true">
+
+            <div
+                class="result-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modalTitle">
+
+                <button
+                    id="closeModal"
+                    class="close-modal"
+                    type="button"
+                    aria-label="Close">
+
+                    ×
+
+                </button>
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <p class="modal-label">
+                    SHORTEST PATH FOUND
+                </p>
+
+                <h2 id="modalTitle">
+                    Route Calculation Complete
+                </h2>
+
+                <div class="route-box">
+
+                    <div class="route-city">
+
+                        <span>FROM</span>
+
+                        <strong id="modalSource">
+                            -
+                        </strong>
+
+                    </div>
+
+                    <div class="modal-arrow">
+                        →
+                    </div>
+
+                    <div class="route-city">
+
+                        <span>TO</span>
+
+                        <strong id="modalDestination">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <div class="distance-box">
+
+                    <span>
+                        TOTAL DISTANCE
+                    </span>
+
+                    <strong id="modalDistance">
+                        -
+                    </strong>
+
+                </div>
+
+                <div class="shortest-route">
+
+                    <span>
+                        SHORTEST ROUTE
+                    </span>
+
+                    <p id="modalPath">
+                        -
+                    </p>
+
+                </div>
+
+                <button
+                    id="modalContinue"
+                    class="continue-button"
+                    type="button">
+
+                    Continue
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <script src="script.js"></script>
+
+    </body>
+</html>
