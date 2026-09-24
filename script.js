@@ -1,13 +1,24 @@
-/* =========================================================
-   DAA PATHFINDER
-   DIJKSTRA SHORTEST PATH VISUALIZER
-   ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+    populateCitySelectors();
+    createGraph();
+});
 
+function populateCitySelectors() {
+    const sourceSelect = document.getElementById("source");
+    const destinationSelect = document.getElementById("destination");
 
-/* =========================================================
-   CITY DATA
-   ========================================================= */
+    Object.keys(cities).forEach(city => {
+        const sourceOption = document.createElement("option");
+        sourceOption.value = city;
+        sourceOption.textContent = city;
+        sourceSelect.appendChild(sourceOption);
 
+        const destinationOption = document.createElement("option");
+        destinationOption.value = city;
+        destinationOption.textContent = city;
+        destinationSelect.appendChild(destinationOption);
+    });
+}
 const cities = {
 
     Hyderabad: {
